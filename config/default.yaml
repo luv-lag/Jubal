@@ -1,0 +1,49 @@
+# Copy this file, fill in model paths from docs/MODELS.md, and point
+# scripts/run_agent.py / the MCP server at your copy (JUBAL_CONFIG=...).
+
+wake:
+  model_dir: models/kws               # dir with encoder/decoder/joiner/tokens.txt
+  keywords_file: models/kws/keywords.txt
+  num_threads: 1
+  provider: cpu
+
+voiceid:
+  backend: resemblyzer                # "resemblyzer" (fast prototype) | "sherpa" (production)
+  sherpa_model: models/voiceid/3dspeaker_embedding.onnx
+  store_path: voice_profiles.json
+  threshold: 0.72
+  margin: 0.05
+  num_threads: 1
+  provider: cpu
+
+streaming_asr:
+  tokens: models/streaming-asr/tokens.txt
+  encoder: models/streaming-asr/encoder.onnx
+  decoder: models/streaming-asr/decoder.onnx
+  joiner: models/streaming-asr/joiner.onnx
+  sample_rate: 16000
+  num_threads: 1
+  provider: cpu
+
+offline_asr:
+  tokens: models/offline-asr/tokens.txt
+  encoder: models/offline-asr/encoder.onnx
+  decoder: models/offline-asr/decoder.onnx
+  joiner: models/offline-asr/joiner.onnx
+  num_threads: 1
+  provider: cpu
+
+tts:
+  model_dir: models/tts/vits-piper-en_US-amy-low
+  speaker_id: 0
+  speed: 1.0
+  num_threads: 1
+  provider: cpu
+
+gate:
+  verification_timeout_s: 2.5
+  active_timeout_s: 8.0
+
+agent:
+  endpoint_url: http://localhost:8000/agent
+  timeout_s: 15.0

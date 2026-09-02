@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# downloaded models and enrolled voice data — never commit real voice data
+models/
+voice_profiles.json
+*.wav
+
+.pytest_cache/
